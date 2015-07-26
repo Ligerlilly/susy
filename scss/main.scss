@@ -1,0 +1,84 @@
+@import 'susy';
+@import 'breakpoint';
+
+$small: 400px;
+$medium: 700px;
+$large: 960px;
+
+$susy: (
+  columns: 12,
+  gutters: 1/4,
+  math: fluid,
+  output: float,
+  gutter-position: inside,
+);
+
+// $widelayout: (
+//   columns: 24,
+//   gutters: 1/4,
+//   math: fluid,
+//   output: float,
+//   gutter-position: inside,
+// );
+
+//@include layout($widelayout);
+//@include layout(24 1/4 fluid float inside);
+//$map: layout(24 1/4 fluid float inside);
+
+body {
+  background: #eee;
+  @include container(80%);
+}
+
+a {
+  color: #2980b9;
+  text-decoration: none;
+}
+
+aside ul {
+  padding: 0;
+  li {
+    list-style: none;
+    margin: 0;
+  }
+  a {
+    display: block;
+    padding: 10px 5%;
+    border-bottom: solid 1px #95a5a6;
+  }
+}
+
+.gallery img {
+  @include gallery(8);
+  @include breakpoint($medium){
+    @include gallery(6)
+  }
+  @include breakpoint($large){
+    @include gallery(3);
+  }
+}
+
+@include breakpoint($medium){
+  main {
+    @include span(8);
+  }
+
+  aside {
+    @include span(4 at 9);
+  }
+}
+
+@include susy-breakpoint($large, 24){
+  //@include layout(24);
+
+  main {
+    @include span(21);
+    .col1, .col2, .col3 {
+      @include span(4 of 12);
+    }
+  }
+
+  aside {
+    @include span(3);
+  }
+}
